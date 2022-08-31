@@ -1,0 +1,12 @@
+.settings/
+.idea/
+target/
+*.project
+*.class
+*.classpath
+*.iml
+*.uml
+.metadata/
+*.uml
+*.bak
+*.log*
