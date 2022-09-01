@@ -7,7 +7,8 @@
     <groupId>com.levtea</groupId>
     <artifactId>coin-exchange</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -16,10 +17,10 @@
     </parent>
 
     <properties>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>18</java.version>
+        <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
         <com-alibaba-cloud.version>2.2.0.RELEASE</com-alibaba-cloud.version>
         <mybatis-plus-boot-stater.version>3.3.2</mybatis-plus-boot-stater.version>
@@ -204,13 +205,13 @@
         <module>coin-common</module>
         <module>coin-admin</module>
         <module>coin-member</module>
-        <module>coin-member/member-api</module>
-        <module>coin-member/member-service</module>
         <module>coin-finance</module>
         <module>coin-chan</module>
         <module>coin-task</module>
         <module>coin-statistics</module>
         <module>match-engine</module>
         <module>exchange-engine</module>
+        <module>coin-statistics/statistics-service</module>
     </modules>
+
 </project>
