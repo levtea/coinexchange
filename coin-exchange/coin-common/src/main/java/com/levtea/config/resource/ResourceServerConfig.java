@@ -13,21 +13,24 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.util.FileCopyUtils;
 
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
   @Override
   public void configure(HttpSecurity http) throws Exception {
-    http
-        // 由于使用的是JWT，我们这里不需要csrf
-        .csrf()
+    http.csrf()
         .disable()
-        // 基于token，所以不需要session
         .sessionManagement()
         .disable()
         .authorizeRequests()
         .antMatchers(
+            "/markets/kline/**",
+            "/users/setPassword",
+            "/users/register",
+            "/sms/sendTo",
+            "/gt/register",
             "/login",
             "/v2/api-docs",
             "/swagger-resources/configuration/ui", // 用来获取支持的动作
@@ -43,6 +46,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         .cacheControl();
   }
 
+  /**
+   * 设置公钥
+   *
+   * @param resources
+   * @throws Exception
+   */
   @Override
   public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
     resources.tokenStore(jwtTokenStore());
@@ -53,8 +62,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     return jwtTokenStore;
   }
 
-  @Bean
+  @Bean // 放在ioc容器的
   public JwtAccessTokenConverter accessTokenConverter() {
+    // resource 验证token（公钥） authorization 产生 token （私钥）
     JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
     String s = null;
     try {
@@ -64,7 +74,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
     tokenConverter.setVerifierKey(s);
     return tokenConverter;
   }

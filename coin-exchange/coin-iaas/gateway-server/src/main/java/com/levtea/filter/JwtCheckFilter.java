@@ -24,26 +24,41 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
 
   @Autowired private StringRedisTemplate redisTemplate;
 
-  @Value("${no.require.urls:/admin/login}")
+  @Value(
+      "${no.require.urls:/admin/login,/user/gt/register,/user/login,/user/users/register,/user/sms/sendTo,/user/users/setPassword}")
   private Set<String> noRequireTokenUris;
-
+  /**
+   * 过滤器拦截到用户的请求后做啥
+   *
+   * @param exchange
+   * @param chain
+   * @return
+   */
   @Override
   public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+    // 1 : 该接口是否需要token 才能访问
     if (!isRequireToken(exchange)) {
-      return chain.filter(exchange);
+      return chain.filter(exchange); // 不需要token ,直接放行
     }
+    // 2: 取出用户的token
     String token = getUserToken(exchange);
+    // 3 判断用户的token 是否有效
     if (StringUtils.isEmpty(token)) {
       return buildNoAuthorizationResult(exchange);
     }
-    Boolean haskey = redisTemplate.hasKey(token);
-    if (haskey != null && haskey) {
-      return chain.filter(exchange);
+    Boolean hasKey = redisTemplate.hasKey(token);
+    if (hasKey != null && hasKey) {
+      return chain.filter(exchange); // token有效 ,直接放行
     }
-
     return buildNoAuthorizationResult(exchange);
   }
 
+  /**
+   * 给用户响应一个没有token的错误
+   *
+   * @param exchange
+   * @return
+   */
   private Mono<Void> buildNoAuthorizationResult(ServerWebExchange exchange) {
     ServerHttpResponse response = exchange.getResponse();
     response.getHeaders().set("Content-Type", "application/json");
@@ -55,19 +70,39 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
     return response.writeWith(Flux.just(wrap));
   }
 
+  /**
+   * 从 请求头里面获取用户的token
+   *
+   * @param exchange
+   * @return
+   */
   private String getUserToken(ServerWebExchange exchange) {
     String token = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-    return token == null ? null : token.replace("bearer", "");
+    return token == null ? null : token.replace("bearer ", "");
   }
 
+  /**
+   * 判断该 接口是否需要token
+   *
+   * @param exchange
+   * @return
+   */
   private boolean isRequireToken(ServerWebExchange exchange) {
     String path = exchange.getRequest().getURI().getPath();
     if (noRequireTokenUris.contains(path)) {
+      return false; // 不需要token
+    }
+    if (path.contains("/kline/")) {
       return false;
     }
     return Boolean.TRUE;
   }
 
+  /**
+   * 拦截器的顺序
+   *
+   * @return
+   */
   @Override
   public int getOrder() {
     return 0;
