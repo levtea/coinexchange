@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>match-api</module>
-        <module>match-service</module>
+        <module>match-server</module>
     </modules>
 
     <properties>

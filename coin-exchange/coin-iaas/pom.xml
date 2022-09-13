@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>gateway-server</module>
-        <module>authorization-server</module>
+        <module>antuoeization-server</module>
     </modules>
 
     <properties>

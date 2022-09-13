@@ -12,8 +12,8 @@
     <artifactId>coin-chan</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>chan-api</module>
         <module>chan-service</module>
+        <module>chan-api</module>
     </modules>
 
     <properties>
