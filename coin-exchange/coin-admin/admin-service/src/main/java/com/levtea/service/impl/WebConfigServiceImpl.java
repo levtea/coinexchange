@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.levtea.mapper.WebConfigMapper;
 import com.levtea.domain.WebConfig;
 import com.levtea.service.WebConfigService;
+
 @Service
-public class WebConfigServiceImpl extends ServiceImpl<WebConfigMapper, WebConfig> implements WebConfigService{
+public class WebConfigServiceImpl extends ServiceImpl<WebConfigMapper, WebConfig> implements WebConfigService {
 
 }
+

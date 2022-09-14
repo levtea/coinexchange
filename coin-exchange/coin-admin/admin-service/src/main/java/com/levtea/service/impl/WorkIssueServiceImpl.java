@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.levtea.domain.WorkIssue;
 import com.levtea.mapper.WorkIssueMapper;
 import com.levtea.service.WorkIssueService;
+
 @Service
-public class WorkIssueServiceImpl extends ServiceImpl<WorkIssueMapper, WorkIssue> implements WorkIssueService{
+public class WorkIssueServiceImpl extends ServiceImpl<WorkIssueMapper, WorkIssue> implements WorkIssueService {
 
 }
+
