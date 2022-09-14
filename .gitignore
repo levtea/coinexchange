@@ -10,3 +10,4 @@ target/
 *.uml
 *.bak
 *.log*
+**/.DS_Store
