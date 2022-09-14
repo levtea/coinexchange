@@ -23,6 +23,20 @@
             <artifactId>exchange-api</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.levtea</groupId>
+            <artifactId>coin-common</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
