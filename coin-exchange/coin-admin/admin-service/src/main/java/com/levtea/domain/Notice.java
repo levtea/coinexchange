@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName(value = "notice")
 public class Notice {
-  @TableId(value = "id", type = IdType.INPUT)
+  @TableId(value = "id", type = IdType.AUTO)
   @ApiModelProperty(value = "")
   private Long id;
 

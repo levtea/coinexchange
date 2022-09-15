@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName(value = "sys_role_privilege")
 public class SysRolePrivilege {
-  @TableId(value = "id", type = IdType.INPUT)
+  @TableId(value = "id", type = IdType.AUTO)
   @ApiModelProperty(value = "")
   private Long id;
 

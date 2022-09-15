@@ -23,7 +23,7 @@ public class Config {
   /**
    * 主键
    */
-  @TableId(value = "id", type = IdType.INPUT)
+  @TableId(value = "id", type = IdType.AUTO)
   @ApiModelProperty(value = "主键")
   private Long id;
 

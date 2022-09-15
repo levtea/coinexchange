@@ -23,7 +23,7 @@ public class WebConfig {
   /**
    * Id
    */
-  @TableId(value = "id", type = IdType.INPUT)
+  @TableId(value = "id", type = IdType.AUTO)
   @ApiModelProperty(value = "Id")
   private Long id;
 

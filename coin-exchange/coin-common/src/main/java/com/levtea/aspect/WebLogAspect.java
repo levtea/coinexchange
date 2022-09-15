@@ -75,7 +75,7 @@ public class WebLogAspect {
     ApiOperation annotation = method.getAnnotation(ApiOperation.class);
     webLog.setDescription(annotation == null ? "no desc" : annotation.value());
     webLog.setMethod(
-        targetClassName + "." + method.getName()); // com.bjsxt.controller.UserController.login()
+        targetClassName + "." + method.getName()); // com.levtea.controller.UserController.login()
     webLog.setParameter(
         getMethodParameter(method, proceedingJoinPoint.getArgs())); // {"key_参数的名称":"value_参数的值"}
     webLog.setResult(result);
