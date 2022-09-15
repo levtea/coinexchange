@@ -11,9 +11,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
@@ -42,5 +41,31 @@ public class SysPrivilegeController {
     page.addOrder(OrderItem.desc("last_update_time"));
     Page<SysPrivilege> sysPrivilegePage = sysPrivilegeService.page(page);
     return R.ok(sysPrivilegePage);
+  }
+
+  @PostMapping
+  @ApiOperation(value = "新增一个权限")
+  @PreAuthorize("hasAuthority('sys_privilege_create')")
+  @ApiImplicitParams({@ApiImplicitParam(name = "sysPrivilege", value = "sysPrivilege 的json数据")})
+  public R add(@RequestBody @Validated SysPrivilege sysPrivilege) {
+
+    boolean save = sysPrivilegeService.save(sysPrivilege);
+    if (save) {
+      return R.ok("新增成功");
+    }
+    return R.fail("新增失败");
+  }
+
+  @PatchMapping
+  @ApiOperation(value = "修改一个权限")
+  @PreAuthorize("hasAuthority('sys_privilege_update')")
+  @ApiImplicitParams({@ApiImplicitParam(name = "sysPrivilege", value = "sysPrivilege 的json数据")})
+  public R update(@RequestBody @Validated SysPrivilege sysPrivilege) {
+
+    boolean save = sysPrivilegeService.updateById(sysPrivilege);
+    if (save) {
+      return R.ok("修改成功");
+    }
+    return R.fail("修改失败");
   }
 }

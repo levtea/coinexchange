@@ -1,49 +1,40 @@
 package com.levtea.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 权限配置
- */
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+
+/** 权限配置 */
 @ApiModel(value = "权限配置")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_privilege")
 public class SysPrivilege {
-  /**
-   * 主键
-   */
+  /** 主键 */
   @TableId(value = "id", type = IdType.INPUT)
   @ApiModelProperty(value = "主键")
   private Long id;
 
-  /**
-   * 所属菜单Id
-   */
+  /** 所属菜单Id */
   @TableField(value = "menu_id")
   @ApiModelProperty(value = "所属菜单Id")
+  @NotNull
   private Long menuId;
 
-  /**
-   * 功能点名称
-   */
+  /** 功能点名称 */
   @TableField(value = "`name`")
   @ApiModelProperty(value = "功能点名称")
+  @NotNull
   private String name;
 
-  /**
-   * 功能描述
-   */
+  /** 功能描述 */
   @TableField(value = "description")
   @ApiModelProperty(value = "功能描述")
   private String description;
@@ -56,31 +47,23 @@ public class SysPrivilege {
   @ApiModelProperty(value = "")
   private String method;
 
-  /**
-   * 创建人
-   */
-  @TableField(value = "create_by")
+  /** 创建人 */
+  @TableField(value = "create_by", fill = FieldFill.INSERT)
   @ApiModelProperty(value = "创建人")
   private Long createBy;
 
-  /**
-   * 修改人
-   */
-  @TableField(value = "modify_by")
+  /** 修改人 */
+  @TableField(value = "modify_by", fill = FieldFill.UPDATE)
   @ApiModelProperty(value = "修改人")
   private Long modifyBy;
 
-  /**
-   * 创建时间
-   */
-  @TableField(value = "created")
+  /** 创建时间 */
+  @TableField(value = "created", fill = FieldFill.INSERT)
   @ApiModelProperty(value = "创建时间")
   private Date created;
 
-  /**
-   * 修改时间
-   */
-  @TableField(value = "last_update_time")
+  /** 修改时间 */
+  @TableField(value = "last_update_time", fill = FieldFill.INSERT_UPDATE)
   @ApiModelProperty(value = "修改时间")
   private Date lastUpdateTime;
 }
