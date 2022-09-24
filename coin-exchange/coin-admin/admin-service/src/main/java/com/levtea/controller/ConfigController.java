@@ -1,7 +1,7 @@
 package com.levtea.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.levtea.domain.Config;
+import com.levtea.domin.Config;
 import com.levtea.model.R;
 import com.levtea.service.ConfigService;
 import io.swagger.annotations.Api;

@@ -2,7 +2,7 @@ package com.levtea.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.levtea.domain.Config;
+import com.levtea.domin.Config;
 
 public interface ConfigService extends IService<Config> {
 

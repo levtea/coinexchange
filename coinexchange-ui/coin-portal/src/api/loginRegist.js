@@ -1,5 +1,5 @@
 import request from "./request";
-import md5 from 'js-md5';
+import md5 from "js-md5";
 /*
  * 注册登录
  */
@@ -10,69 +10,77 @@ export const loginRegist = {
   login(data) {
     data.password = md5(data.password);
     return request({
-      url: '/user/login',
-      method: 'post',
+      url: "/user/login",
+      method: "post",
       data,
-    })
+    });
   },
   /**
    * 注册
    */
-  register(data, geetest_challenge,uuid, geetest_validate, geetest_seccode ,registType) {
-    let {countryCode,  password, invitationCode, validateCode,email,mobile} = data;
-    alert(uuid)
+  register(
+    data,
+    geetest_challenge,
+    uuid,
+    geetest_validate,
+    geetest_seccode,
+    registType
+  ) {
+    let { countryCode, password, invitationCode, validateCode, email, mobile } =
+      data;
+    alert(uuid);
     let reqData = {
       countryCode,
-      password : md5(password),
+      password: md5(password),
       invitionCode: invitationCode,
       validateCode,
       geetest_challenge,
       geetest_validate,
       uuid,
-      geetest_seccode
-    }
-    if(registType === 0 ){
-      reqData.mobile = mobile
-    }else{
-      reqData.email = email
+      geetest_seccode,
+    };
+    if (registType === 0) {
+      reqData.mobile = mobile;
+    } else {
+      reqData.email = email;
     }
     return request({
-      url: '/user/users/register',
-      method: 'post',
-      data: reqData
-    })
+      url: "/user/users/register",
+      method: "post",
+      data: reqData,
+    });
   },
 
   /**
    * 获取图片验证码
    */
   getValidateCodeImg() {
-    console.log('getValidateCodeImg')
-    const url = '/platform/user/getValidateCodeImg.m?t=' + Math.random()
+    console.log("getValidateCodeImg");
+    const url = "/platform/user/getValidateCodeImg.m?t=" + Math.random();
     return axios.get(url).then((res) => {
-      return Promise.resolve(res.data)
-    })
+      return Promise.resolve(res.data);
+    });
   },
   /**
    * 获取usessionid
    */
   getUsessionId() {
-    console.log('getUsessionId')
-    const url = '/platform/user/getUsessionId.m'
+    console.log("getUsessionId");
+    const url = "/platform/user/getUsessionId.m";
     return axios.get(url).then((res) => {
-      return Promise.resolve(res.data)
-    })
+      return Promise.resolve(res.data);
+    });
   },
   /**
    *
    *获取用户信息
    */
   serverGetUser() {
-    console.log('serverGetUser')
-    const url = '/trade/home/serverGetUser.o'
+    console.log("serverGetUser");
+    const url = "/trade/home/serverGetUser.o";
     return axios.get(url).then((res) => {
-      return Promise.resolve(res.data)
-    })
+      return Promise.resolve(res.data);
+    });
   },
   /**
    *
@@ -80,18 +88,18 @@ export const loginRegist = {
    */
   logout() {
     return request({
-      url: '/user/logout',
-      method: 'get',
-    })
+      url: "/user/logout",
+      method: "get",
+    });
   },
 
   // 设置新的登录密码
-  setPassword(data){
+  setPassword(data) {
     data.password = md5(data.password);
     return request({
-      url: '/user/users/setPassword',
-      method: 'post',
+      url: "/user/users/setPassword",
+      method: "post",
       data,
     });
   },
-}
+};

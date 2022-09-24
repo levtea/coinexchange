@@ -33,6 +33,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alicloud-oss</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.levtea</groupId>
+            <artifactId>member-api</artifactId>
+            <version>1.0</version>
+
+        </dependency>
     </dependencies>
 
     <build>

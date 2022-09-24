@@ -1,4 +1,4 @@
-package com.levtea.domain;
+package com.levtea.domin;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;

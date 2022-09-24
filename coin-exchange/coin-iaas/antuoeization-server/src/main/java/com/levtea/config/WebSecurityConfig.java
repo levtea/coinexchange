@@ -43,8 +43,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   public static void main(String[] args) {
-    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-    String encode = bCryptPasswordEncoder.encode("e10adc3949ba59abbe56e057f20f883e");
-    System.out.println(encode);
+    // 用户密码
+    String password = "qwer1234";
+    // 创建密码加密的对象
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    //    // 密码加密
+    //    String newPassword = passwordEncoder.encode(password);
+    //    System.out.println("加密后的密码为：" + newPassword);
+
+    // 校验这两个密码是否是同一个密码
+    // matches方法第一个参数是原密码，第二个参数是加密后的密码
+    boolean matches =
+        passwordEncoder.matches(
+            password, "$2a$10$XqsrGaGwG1AwrYcUUhxI9.C7jlHhfdKqw6rnD6x6rAehjTLowId1i");
+    System.out.println("两个密码一致:" + matches);
   }
 }

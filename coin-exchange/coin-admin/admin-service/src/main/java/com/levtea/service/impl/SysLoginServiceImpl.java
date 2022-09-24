@@ -41,7 +41,7 @@ public class SysLoginServiceImpl implements SysLoginService {
 
   @Override
   public LoginResult login(String username, String password) {
-    log.info("用户{}开始登录", username);
+    log.info("用户{}开始登录, 密码为{}", username, password);
     // 1 获取token 需要远程调用authorization-server 该服务
     ResponseEntity<JwtToken> tokenResponseEntity =
         oAuth2FeignClient.getToken("password", username, password, "admin_type", basicToken);

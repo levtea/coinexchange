@@ -3,7 +3,7 @@ package com.levtea.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.levtea.domain.Config;
+import com.levtea.domin.Config;
 import com.levtea.mapper.ConfigMapper;
 import com.levtea.service.ConfigService;
 import org.springframework.stereotype.Service;
