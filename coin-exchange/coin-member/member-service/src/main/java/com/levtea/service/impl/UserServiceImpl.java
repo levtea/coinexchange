@@ -54,6 +54,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
   @Autowired private SmsService smsService;
 
+  public static void main(String[] args) {
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    String encode =
+        bCryptPasswordEncoder.encode("5d93ceb70e2bf5daa84ec3d0cd2c731a"); // 我们在网页上的MD5(qwer1234)
+    // $2a$10$VunjWMtWphOE3Yk8A6fqge//Pn9mO4QV0pwcWl52ChFmb8T6NyOaq 修改我们的数据库密码->替换为现在这个值
+    System.out.println(encode);
+  }
+
   @Override
   public Page<User> findByPage(
       Page<User> page,
@@ -429,13 +437,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     user.setSeniorAuthStatus(seniorAuthStatus);
     user.setSeniorAuthDesc(seniorAuthDesc);
     return user;
-  }
-
-  public static void main(String[] args) {
-    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-    String encode =
-        bCryptPasswordEncoder.encode("5d93ceb70e2bf5daa84ec3d0cd2c731a"); // 我们在网页上的MD5(qwer1234)
-    // $2a$10$VunjWMtWphOE3Yk8A6fqge//Pn9mO4QV0pwcWl52ChFmb8T6NyOaq 修改我们的数据库密码->替换为现在这个值
-    System.out.println(encode);
   }
 }

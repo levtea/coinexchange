@@ -28,49 +28,49 @@ import java.util.UUID;
 public class GeetestLib {
 
   public static final String GEETEST_SERVER_USER_KEY = "gt_server_user";
-
-  /** 公钥 */
-  private String geetest_id;
-
-  /** 私钥 */
-  private String geetest_key;
-
-  /** 返回数据的封装对象 */
-  private GeetestLibResult libResult;
-
-  /** 调试开关，是否输出调试日志 */
-  private static final boolean IS_DEBUG = true;
-
-  private static final String API_URL = "http://api.geetest.com";
-
-  private static final String REGISTER_URL = "/register.php";
-
-  private static final String VALIDATE_URL = "/validate.php";
-
-  private static final String JSON_FORMAT = "1";
-
-  private static final boolean NEW_CAPTCHA = true;
-
-  private static final int HTTP_TIMEOUT_DEFAULT = 5000; // 单位：毫秒
-
   public static final String VERSION = "jave-servlet:3.1.0";
-
   /** 极验二次验证表单传参字段 chllenge */
   public static final String GEETEST_CHALLENGE = "geetest_challenge";
-
   /** 极验二次验证表单传参字段 validate */
   public static final String GEETEST_VALIDATE = "geetest_validate";
-
   /** 极验二次验证表单传参字段 seccode */
   public static final String GEETEST_SECCODE = "geetest_seccode";
-
   /** 极验验证API服务状态Session Key */
   public static final String GEETEST_SERVER_STATUS_SESSION_KEY = "gt_server_status";
+  /** 调试开关，是否输出调试日志 */
+  private static final boolean IS_DEBUG = true;
+  private static final String API_URL = "http://api.geetest.com";
+  private static final String REGISTER_URL = "/register.php";
+  private static final String VALIDATE_URL = "/validate.php";
+  private static final String JSON_FORMAT = "1";
+  private static final boolean NEW_CAPTCHA = true;
+  private static final int HTTP_TIMEOUT_DEFAULT = 5000; // 单位：毫秒
+  /** 公钥 */
+  private String geetest_id;
+  /** 私钥 */
+  private String geetest_key;
+  /** 返回数据的封装对象 */
+  private GeetestLibResult libResult;
 
   public GeetestLib(String geetest_id, String geetest_key) {
     this.geetest_id = geetest_id;
     this.geetest_key = geetest_key;
     this.libResult = new GeetestLibResult();
+  }
+
+  /** 将byte转为16进制 */
+  private static String byte2Hex(byte[] bytes) {
+    StringBuilder sb = new StringBuilder();
+    String temp = null;
+    for (int i = 0; i < bytes.length; i++) {
+      temp = Integer.toHexString(bytes[i] & 0xFF);
+      if (temp.length() == 1) {
+        // 得到一位的进行补0操作
+        sb.append("0");
+      }
+      sb.append(temp);
+    }
+    return sb.toString();
   }
 
   public void gtlog(String message) {
@@ -363,21 +363,6 @@ public class GeetestLib {
       this.gtlog("sha256_encode(): 发生异常, " + e.toString());
     }
     return encodeStr;
-  }
-
-  /** 将byte转为16进制 */
-  private static String byte2Hex(byte[] bytes) {
-    StringBuilder sb = new StringBuilder();
-    String temp = null;
-    for (int i = 0; i < bytes.length; i++) {
-      temp = Integer.toHexString(bytes[i] & 0xFF);
-      if (temp.length() == 1) {
-        // 得到一位的进行补0操作
-        sb.append("0");
-      }
-      sb.append(temp);
-    }
-    return sb.toString();
   }
 
   /** hmac-sha256 加密 */

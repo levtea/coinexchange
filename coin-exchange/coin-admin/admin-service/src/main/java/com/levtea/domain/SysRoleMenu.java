@@ -6,14 +6,13 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 角色菜单
- */
+import java.util.Date;
+
+/** 角色菜单 */
 @ApiModel(value = "角色菜单")
 @Data
 @AllArgsConstructor
@@ -32,30 +31,22 @@ public class SysRoleMenu {
   @ApiModelProperty(value = "")
   private Long menuId;
 
-  /**
-   * 创建人
-   */
+  /** 创建人 */
   @TableField(value = "create_by")
   @ApiModelProperty(value = "创建人")
   private Long createBy;
 
-  /**
-   * 修改人
-   */
+  /** 修改人 */
   @TableField(value = "modify_by")
   @ApiModelProperty(value = "修改人")
   private Long modifyBy;
 
-  /**
-   * 创建时间
-   */
+  /** 创建时间 */
   @TableField(value = "created")
   @ApiModelProperty(value = "创建时间")
   private Date created;
 
-  /**
-   * 修改时间
-   */
+  /** 修改时间 */
   @TableField(value = "last_update_time")
   @ApiModelProperty(value = "修改时间")
   private Date lastUpdateTime;

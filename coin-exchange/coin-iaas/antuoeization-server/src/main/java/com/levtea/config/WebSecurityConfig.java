@@ -11,37 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable();
-    http.authorizeRequests().anyRequest().authenticated();
-  }
-
-  @Bean
-  protected AuthenticationManager authenticationManager() throws Exception {
-    return super.authenticationManager();
-  }
-
-  //    @Bean
-  //    public UserDetailsService userDetailsService() {
-  //        InMemoryUserDetailsManager inMemoryUserDetailsManager = new
-  // InMemoryUserDetailsManager();
-  //        User user = new User("admin", "123456", Arrays.asList(new
-  // SimpleGrantedAuthority("Role_Admin")));
-  //        inMemoryUserDetailsManager.createUser(user);
-  //        return inMemoryUserDetailsManager;
-  //    }
-
-  /**
-   * 密码加密
-   *
-   * @return
-   */
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
-
   public static void main(String[] args) {
     // 用户密码
     String password = "qwer1234";
@@ -57,5 +26,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         passwordEncoder.matches(
             password, "$2a$10$XqsrGaGwG1AwrYcUUhxI9.C7jlHhfdKqw6rnD6x6rAehjTLowId1i");
     System.out.println("两个密码一致:" + matches);
+  }
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable();
+    http.authorizeRequests().anyRequest().authenticated();
+  }
+
+  //    @Bean
+  //    public UserDetailsService userDetailsService() {
+  //        InMemoryUserDetailsManager inMemoryUserDetailsManager = new
+  // InMemoryUserDetailsManager();
+  //        User user = new User("admin", "123456", Arrays.asList(new
+  // SimpleGrantedAuthority("Role_Admin")));
+  //        inMemoryUserDetailsManager.createUser(user);
+  //        return inMemoryUserDetailsManager;
+  //    }
+
+  @Bean
+  protected AuthenticationManager authenticationManager() throws Exception {
+    return super.authenticationManager();
+  }
+
+  /**
+   * 密码加密
+   *
+   * @return
+   */
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
   }
 }

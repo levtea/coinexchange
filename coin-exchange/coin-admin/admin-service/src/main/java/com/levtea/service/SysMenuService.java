@@ -9,4 +9,3 @@ public interface SysMenuService extends IService<SysMenu> {
 
   List<SysMenu> getMenusByUserId(Long userId);
 }
-

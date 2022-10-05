@@ -10,9 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 用户权限配置
- */
+/** 用户权限配置 */
 @ApiModel(value = "用户权限配置")
 @Data
 @AllArgsConstructor
@@ -23,23 +21,17 @@ public class SysRolePrivilegeUser {
   @ApiModelProperty(value = "")
   private Long id;
 
-  /**
-   * 角色Id
-   */
+  /** 角色Id */
   @TableField(value = "role_id")
   @ApiModelProperty(value = "角色Id")
   private Long roleId;
 
-  /**
-   * 用户Id
-   */
+  /** 用户Id */
   @TableField(value = "user_id")
   @ApiModelProperty(value = "用户Id")
   private Long userId;
 
-  /**
-   * 权限Id
-   */
+  /** 权限Id */
   @TableField(value = "privilege_id")
   @ApiModelProperty(value = "权限Id")
   private Long privilegeId;

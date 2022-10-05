@@ -10,9 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 角色权限配置
- */
+/** 角色权限配置 */
 @ApiModel(value = "角色权限配置")
 @Data
 @AllArgsConstructor

@@ -2,6 +2,8 @@ package com.levtea.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.levtea.domain.AdminBank;
+import com.levtea.dto.AdminBankDto;
+import com.levtea.feign.AdminBankServiceFeign;
 import com.levtea.model.R;
 import com.levtea.service.AdminBankService;
 import io.swagger.annotations.Api;
@@ -14,10 +16,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/adminBanks")
 @Api(tags = "公司银行卡的配置")
-public class AdminBankController {
+public class AdminBankController implements AdminBankServiceFeign {
 
   @Autowired private AdminBankService adminBankService;
 
@@ -76,9 +80,9 @@ public class AdminBankController {
     return R.fail("状态修改失败");
   }
 
-  //  @Override
-  //  public List<AdminBankDto> getAllAdminBanks() {
-  //    List<AdminBankDto> adminBankDtos = adminBankService.getAllAdminBanks();
-  //    return adminBankDtos;
-  //  }
+  @Override
+  public List<AdminBankDto> getAllAdminBanks() {
+    List<AdminBankDto> adminBankDtos = adminBankService.getAllAdminBanks();
+    return adminBankDtos;
+  }
 }

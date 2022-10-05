@@ -14,11 +14,9 @@ import java.util.List;
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
     implements SysMenuService {
 
-  @Autowired
-  private SysRoleService sysRoleService;
+  @Autowired private SysRoleService sysRoleService;
 
-  @Autowired
-  private SysMenuMapper sysMenuMapper;
+  @Autowired private SysMenuMapper sysMenuMapper;
 
   @Override
   public List<SysMenu> getMenusByUserId(Long userId) {
@@ -30,4 +28,3 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
     return sysMenuMapper.selectMenusByUserId(userId);
   }
 }
-
